@@ -1,0 +1,73 @@
+MAIN CLASS
+
+/**
+ * Returns number of cats because of the total number of cats that have been created
+ * because of static class
+ * 
+ */
+public class CatStuff{
+    public static void main (String []args) {
+        Cat cat1 = new Cat("Avinash");
+        Cat cat2 = new Cat("Belinda");
+        Cat cat3 = new Cat("Avinash2");
+        
+        System.out.println(Cat.howManyCats());
+    }
+}
+
+SUB-CLASS
+
+public class Cat{
+    /**
+     * If variables are private, the CatStuff will not compile
+     * because private cannot be called into other classes
+     * Private variables make the code "encapsulated" which
+     * keeps variable names from changing outside of the class
+     */
+    
+    private int numlegs;
+    private int numeyes;
+    private String mood;
+    private String name;
+    
+    /**
+     * Instead, use Getters & Setters or others
+     */
+    public void setLegs (int l) { numlegs = l;}
+    public void setEyes(int p) {numeyes = p;}    
+    public int getLegs() { return numlegs;}
+    public int getEyes() { return numeyes; } 
+    public String getMood() {return mood;}
+    
+    public void setMood(int m) {
+        if (m==0) mood = "neutral";
+        else if (m==1) mood = "angry";
+        else if (m==2) mood = "happy";
+        else if (m==3) mood = "hungry";
+        else mood = "vindictive";
+    }
+    
+    /**
+     * Constructors should have different parameters
+     * This is called overloading
+     * All constructors have no return type and same name as class
+     * if you write a constructor with a parameter, the default constructor
+     * stops existing
+     * Whencreating cat, you must name it or the code won't compile
+     */
+    public Cat (String n){
+        name = n;
+        totalCats++;
+    }
+    
+    /**
+     * Anything "Static" only has one instance no matter how many copies
+     * of the class there are
+     * static variables can track things among all copies of the class
+     * these methods are usually "helper" functions
+     * for example, Math.pow() is a static method
+     * These Static methods can be envoked with a class name
+     */
+    private static int totalCats = 0;
+    public static int howManyCats() {return totalCats;}
+}
